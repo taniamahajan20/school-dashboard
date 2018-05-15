@@ -1,0 +1,53 @@
+<div class="container">
+  <div class="row">
+    <div *ngFor="let stu of students" class="col sm-4 p-2">
+      <div class="card bg-light text-center">
+        <div class="card-block">
+          <h4 class="card-title">Student: {{stu.name}}</h4>
+          <button class="btn btn-primary" (click)="displayStudent(stu.id)">Show Details</button>
+          <button class="btn btn-primary" (click)="update(stu)">Enroll</button>
+          <!--<label>Course: {{sub.course.name}}</label>-->
+        </div>
+      </div>
+    </div>
+  </div>
+  <button class="btn btn-primary" *ngIf="!showForm" (click)="displayForm()">Add New Student</button>
+
+  <div *ngIf="showForm">
+    <div class="row">
+      <div class="card bg-light text-center">
+        <div class="card-block">
+          <h2 class="card-title">Student: </h2>
+          <input [(ngModel)]="student.name">
+          <select multiple [(ngModel)]="selectedVal">
+    <option value = "" disabled selected> Select a Course</option>
+    <option *ngFor="let item of batches" [value]="item.id">{{item.name}}</option>
+  </select>
+          <button (click)="addStudent()">Add</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="showStudent">
+    <label>Name: {{student.name}}</label>
+    <label>Batches: </label>
+    <ul>
+      <li *ngFor="let bat of student.batchArr">{{bat.name}}</li>
+    </ul>
+  </div>
+
+  <div *ngIf="showUpdate">
+    <div class="card bg-light text-center">
+      <div class="card-block">
+        <h2 class="card-title">Name: {{student.name}}</h2>
+        <label>Batches: </label>
+        <select multiple [(ngModel)]="selectedVal">
+    <option value = "" disabled selected> Select a Course</option>
+    <option *ngFor="let item of batches" [value]="item.id">{{item.name}}</option>
+  </select>
+        <button class="btn btn-primary" (click)="enrollStudent()">Done</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,111 @@
+<div class="container">
+  <div *ngIf="showCourses">
+    <div class="row">
+      <div *ngFor="let co of courses" class="col-sm-4">
+        <div class="card bg-light text-center">
+          <div class="card-block">
+            <h4 class="card-title">{{co.name}}</h4>
+            <br/>
+            <button class="btn btn-primary" (click)="getBatchesList(co.id)">Batches</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button class="btn btn-primary" *ngIf="!(newadd || showBatches)" (click)="wantToAdd()">Add New Course</button>
+
+  <div *ngIf="newadd">
+
+    <label>Course Name</label>
+    <input [(ngModel)]="course.name">
+    <button class="btn btn-primary" (click)="addNewCourse()">Add</button>
+  </div>
+
+  <div *ngIf="showBatches">
+    <div class="row">
+      <div *ngFor="let b of batches" class="col-sm-4">
+        <div class="card bg-light text-center">
+          <div class="card-block">
+            <h4 class="card-title">Batch Name : {{b.name}}</h4>
+            <label class="card-text"> Start Date : {{b.startDate}}</label>
+            <button  class="btn btn-primary" (click)="displayLec(b)">Lectures </button>
+            <button class="btn btn-primary" (click)="displayLecForm(b)"> Add Lecture</button>
+            <button class="btn btn-primary" (click)="displayStuds(b)">Students of the batch</button>
+            <button class="btn btn-primary" (click)="displayStudForm(b)"> Add Students</button>
+          </div>
+        </div>
+      <button class="btn btn-primary" (click)="batchForm()">Add Batch</button>
+      <button class="btn btn-primary" (click)="goBackFromBatches()">BACK</button>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="showBatchForm">
+    <div class="card bg-light text-center">
+      <div class="card-block">
+        <label>Batch Name: </label>
+        <input [(ngModel)]="batch.name">
+        <br>
+        <label>Start Date: </label>
+        <input [(ngModel)]="batch.startDate">
+        <button class="btn btn-primary" (click)="addNewBatch()">Add Batch</button>
+        <button class="btn btn-primary" (click)="goBackFromBatches()">BACK</button>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="showLec">
+    <div class="card bg-light text-center">
+      <div class="card-block">
+        <ul>
+          <li *ngFor="let lec of lectures">
+            {{lec.name}}
+          </li>
+        </ul>
+        <button class="btn btn-primary" (click)="goBackFromBatches()">BACK</button>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="showLecForm">
+    <div class="card bg-light text-center">
+      <div class="card-block">
+        <label>Lecture: </label>
+        <input [(ngModel)]="lecture.name">
+        <select [(ngModel)]="selectedVal">
+    <option value = "" disabled selected> Select a Teacher</option>
+    <option *ngFor="let item of teachers" [value]="item.id">{{item.name}}</option>
+  </select>
+        <button class="btn btn-primary" (click)="addLecture()">Add</button>
+        <button class="btn btn-primary" (click)="goBackFromBatches()">BACK</button>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="showStuds">
+    <div class="card bg-light text-center">
+      <div class="card-block">
+        <ul>
+          <li *ngFor="let s of studentArr"> {{s.name}}</li>
+        </ul>
+        <button class="btn btn-primary" (click)="goBackFromBatches()">BACK</button>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="showStudForm">
+    <div class="card bg-light text-center">
+      <div class="card-block">
+        <label>Batch: </label>
+        <input [(ngModel)]="batch.name">
+        <select [(ngModel)]="selectedVal">
+    <option value = "" disabled selected> Select a Student</option>
+    <option *ngFor="let item of students" [value]="item.id">{{item.name}}</option>
+  </select>
+        <button class="btn btn-primary" (click)="addStudent()">Add</button>
+        <button class="btn btn-primary" (click)="noMoreAdd()">No More Additions</button>
+        <button class="btn btn-primary" (click)="goBackFromBatches()">BACK</button>
+      </div>
+    </div>
+  </div>
+</div>

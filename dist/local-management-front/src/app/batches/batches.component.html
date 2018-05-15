@@ -1,0 +1,16 @@
+<div class="container">
+  <div *ngFor="let x of batches;let y=index" class="col-sm-4 p-2">
+    <div class="card bg-light text-center">
+      <div class="card-block">
+        <h2 class="card-title">{{x.name}}</h2>
+        <label class="card-text">{{x.startDate}}</label>
+        <!--<button (click)=onSelected(x.id)>Select</button>-->
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="selection">
+    <label>{{batch.name}}</label>
+    <label>{{batch.startDate}}</label>
+  </div>
+</div>

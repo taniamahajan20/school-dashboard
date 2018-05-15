@@ -1,0 +1,17 @@
+<div class="container">
+  <button class="btn btn-primary" (click)="showBatches()">Batch</button>
+  <button (click)="showCourses()" class="btn btn-primary">Courses</button>
+  <button (click)="showStudents()" class="btn btn-primary">Students</button>
+  <button (click)="showSubjects()" class="btn btn-primary">Subjects</button>
+  <button (click)="showTeachers()" class="btn btn-primary">Teachers</button>
+  <app-batches *ngIf="showBatch"></app-batches>
+  <app-courses *ngIf="showCourse"></app-courses>
+  <br>
+  <app-subjects *ngIf="showSubject"></app-subjects>
+  <br>
+  <br>
+  <app-teachers *ngIf="showTeacher"></app-teachers>
+  <br>
+  <br>
+  <app-students *ngIf="showStudent"></app-students>
+</div>

@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="row">
+    <div class="col sm-4 p-2">
+      <div *ngFor="let sub of subjects">
+        <div class="card bg-light text-center">
+          <div class="card-block">
+            <h2 class="card-title">Subject: {{sub.name}}</h2>
+            <!--<label>Course: {{sub.course.name}}</label>-->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button class="btn btn-primary" *ngIf="!showForm" (click)="displayForm()">Add New Subject</button>
+
+  <div *ngIf="showForm">
+    <h2>Subject: </h2>
+    <input [(ngModel)]="subject.name">
+    <br>
+    <h2>Course: </h2>
+    <select [(ngModel)]="selectedVal">
+    <option value = "" disabled selected> Select a Course</option>
+    <option *ngFor="let item of courses" [value]="item.id">{{item.name}}</option>
+  </select>
+    <button class="btn btn-primary" (click)="addSubject()">Add</button>
+  </div>
+</div>
